@@ -14,10 +14,18 @@ mongoose.connection.on('connected', () => {
 const express = require('express');
 const app = express();
 
-// middlewere
+// controllers 
 const morgan = require('morgan');
+const petCtrl = require('./controllers/pets')
+
+// middlewere
 app.use(morgan('dev'));
 app.use(express.json());
+
+// routes 
+app.use('/pets', petCtrl);
+
+
 
 app.listen(3000, () => {
   console.log('The express app is ready!');
