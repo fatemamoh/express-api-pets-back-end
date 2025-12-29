@@ -73,7 +73,9 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params
-        const pet = await Pet.findByIdAndUpdate(id)
+        const pet = await Pet.findByIdAndUpdate(id, req.body , {
+            new:true
+        });
         if (!pet) {
             res.status(404).json({ error: 'Pet Not Found' });
         } else {
